@@ -18,7 +18,7 @@ Realização da automação do site, utilizando JAVA, Eclipse, Maven, Cucumber, 
 
 - Page objects<br>
 - Steps<br>
-- Lógicbr>
+- Lógic<br>
 - Runner<br>
 - Feature<br>
 
