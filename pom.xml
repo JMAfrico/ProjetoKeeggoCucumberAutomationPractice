@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-    
+
 	<groupId>com.automationpractice</groupId>
 	<artifactId>automation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -38,22 +38,30 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<version>2.5.2</version>
 		</dependency>
-		
-				<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>2.5.5</version>
 		</dependency>
-		
-				<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<version>2.5.5</version>
 			<scope>test</scope>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.12</version>
+			<scope>provided</scope>
+		</dependency>
+
 
 
 	</dependencies>
