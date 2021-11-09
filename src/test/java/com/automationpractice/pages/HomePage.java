@@ -9,6 +9,9 @@ public class HomePage {
 	
 	private static String URL_HOME_PAGE = "http://automationpractice.com/index.php";
 	
+	public HomePage() {
+		// TODO Auto-generated constructor stub
+	}
 	//Abre o home Page assim que é chamado
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
@@ -23,10 +26,11 @@ public class HomePage {
 
 	//dentro da home page, clica no botão de login e navega para a página de cadastro
 	//utilizando o mesmo driver
-	public CadastroPage navegarParaPaginaDeLogin() {
+	public LoginPage navegarParaPaginaDeLogin() {
 		driver.findElement(By.className("login")).click();
-		return new CadastroPage(driver);
+		return new LoginPage(driver);
 	}
+	
 	
 
 	

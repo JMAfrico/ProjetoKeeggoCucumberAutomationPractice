@@ -1,14 +1,12 @@
 package com.automationpractice.pages;
 
-import static org.mockito.ArgumentMatchers.contains;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CadastroPage {
+public class LoginPage {
 
 	private WebDriver driver;
 
@@ -16,7 +14,7 @@ public class CadastroPage {
 	private static String URL_CADASTRO = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
 	private static String URL_CADASTRO_INVALIDO = "http://automationpractice.com/index.php?controller=authentication";
 
-	public CadastroPage(WebDriver driver) {
+	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -34,10 +32,16 @@ public class CadastroPage {
 
 	// espera o texto de email invalido carregar
 	private void esperaCarregarTextoEmailInvalido() {
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.textToBe(By.id("create_account_error"), "Invalid email address."));
 	}
-
+	
+	// espera o texto de email invalido carregar
+	private void esperaCarregarBotaoNovoCadastro() {
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("authentication")));
+	}
+	
 	// Verifica se estou na página de Login
 	public boolean estouNaPaginaDeLogin() {
 		return this.driver.getCurrentUrl().equals(URL_LOGIN);
@@ -68,6 +72,7 @@ public class CadastroPage {
 
 	// clica no botão validar email para cadastro
 	public void btnValidarEmailParaCadastro() {
+		esperaCarregarBotaoNovoCadastro();
 		driver.findElement(By.id("SubmitCreate")).submit();
 
 	}
@@ -178,5 +183,29 @@ public class CadastroPage {
 		return driver.getPageSource().contains("errors");
 					
 	}
+	
+	//login
+	public void preencherEmailLogin(String email) {
+		WebElement txtEmail = driver.findElement(By.id("email"));
+		txtEmail.sendKeys(email);
+	}
+	
+	public void preencherSenhaDoLogin(String senha) {
+		WebElement txtEmail = driver.findElement(By.id("passwd"));
+		txtEmail.sendKeys(senha);
+	}
+	
+	public void ClicarEmFazerLogin() {
+		WebElement btnFazerLogin = driver.findElement(By.id("SubmitLogin"));
+		btnFazerLogin.click();
+	}
+
+	public boolean mensagemAcessoInvalido() {
+		String pageSource = driver.getPageSource();
+		return pageSource.contains("Authentication failed.")
+				|| pageSource.contains("Invalid password.");
+	}
+
+	
 
 }

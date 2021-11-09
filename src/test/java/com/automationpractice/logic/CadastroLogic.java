@@ -3,7 +3,7 @@ package com.automationpractice.logic;
 import org.openqa.selenium.WebDriver;
 
 import com.automationpractice.pages.Browser;
-import com.automationpractice.pages.CadastroPage;
+import com.automationpractice.pages.LoginPage;
 
 import lombok.extern.log4j.Log4j2;
 

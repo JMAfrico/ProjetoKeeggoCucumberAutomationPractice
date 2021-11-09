@@ -6,27 +6,27 @@ Funcionalidade: Cadastro de usuario
   @email_valido
   Cenario: Validar email de cadastro
     Dado que eu estou na pagina de login
-    Quando informo o "email"
+    Quando informo o email para cadastro "mariazinha2@gmail.com"
     E seleciono a acao de criar uma conta
     Entao sou redirecionado para a tela de novo usuario
     
   @email_invalido
   Cenario: Email invalido de cadastro
     Dado que eu estou na pagina de login
-    Quando informo o "email" invalido
+    Quando informo o email "fulano" invalido
     E seleciono a acao de criar uma conta
     Entao uma mensagem de erro e mostrada
     
   @email_existente
   Cenario: Email ja existente de cadastro
     Dado que eu estou na pagina de login
-    Quando informo o "email" que ja foi cadastrado
+    Quando informo o email "fulano@hotmail.com" que ja foi cadastrado
     E seleciono a acao de criar uma conta
     Entao uma mensagem de email ja cadastrado e mostrada
     
   @autenticao_valida
     Cenario: Autenticacao de cadastro valido
-    Dado que tenho um email valido de novo usuario 
+    Dado que tenho um email "mariazinha@gmail.com" valido de novo usuario 
     E que eu estou na pagina de cadastro de usuario
     Quando informo o genero "Mr."
     E informo o nome "Maria" 
@@ -47,7 +47,7 @@ Funcionalidade: Cadastro de usuario
     
     @autenticao_invalida
     Cenario: Autenticacao de cadastro invalida
-    Dado que tenho um email valido de novo usuario 
+    Dado que tenho um email "mariazinha@gmail.com" valido de novo usuario 
     E que eu estou na pagina de cadastro de usuario
     Quando informo o genero ""
     E informo o nome "" 
