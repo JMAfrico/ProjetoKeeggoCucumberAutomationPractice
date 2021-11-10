@@ -6,7 +6,7 @@ Funcionalidade: Cadastro de usuario
   @email_valido
   Cenario: Validar email de cadastro
     Dado que eu estou na pagina de login
-    Quando informo o email para cadastro "mariazinha2@gmail.com"
+    Quando informo o email para cadastro "mariazin@gmail.com"
     E seleciono a acao de criar uma conta
     Entao sou redirecionado para a tela de novo usuario
     
@@ -26,7 +26,7 @@ Funcionalidade: Cadastro de usuario
     
   @autenticao_valida
     Cenario: Autenticacao de cadastro valido
-    Dado que tenho um email "mariazinha@gmail.com" valido de novo usuario 
+    Dado que tenho um email "joKK5dd@gmail.com" valido de novo usuario 
     E que eu estou na pagina de cadastro de usuario
     Quando informo o genero "Mr."
     E informo o nome "Maria" 
@@ -43,11 +43,11 @@ Funcionalidade: Cadastro de usuario
     E informo o numero de celular "11966666666" 
     E informo o endereco alternativo "Rua da praia" 
     E clico na acao registrar uma conta
-    Entao sou redirecionado para o menu minha conta
+    Entao eu sou redirecionado para o menu minha conta
     
     @autenticao_invalida
     Cenario: Autenticacao de cadastro invalida
-    Dado que tenho um email "mariazinha@gmail.com" valido de novo usuario 
+    Dado que tenho um email "mariazinha66@gmail.com" valido de novo usuario 
     E que eu estou na pagina de cadastro de usuario
     Quando informo o genero ""
     E informo o nome "" 

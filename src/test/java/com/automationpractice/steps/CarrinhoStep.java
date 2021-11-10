@@ -31,7 +31,7 @@ public class CarrinhoStep {
 	
 	@After("@carrinho")
 	public void tearDown() {
-		//browser.fechar();
+		browser.fechar();
 	}
 	
 	@Dado("que eu tenho estou logado no site com email {string} e senha {string}")
