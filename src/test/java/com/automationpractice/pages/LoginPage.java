@@ -14,8 +14,15 @@ public class LoginPage {
 	private static String URL_CADASTRO = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
 	private static String URL_CADASTRO_INVALIDO = "http://automationpractice.com/index.php?controller=authentication";
 
-	public LoginPage(WebDriver driver) {
-		this.driver = driver;
+	public LoginPage() {
+		
+	}
+	
+	public LoginPage(WebDriver driver) {	
+			this.driver = driver;
+			driver.navigate().to(URL_LOGIN);
+			driver.manage().window().maximize();
+		
 	}
 
 	// espera a página de cadastro carregar
@@ -23,7 +30,7 @@ public class LoginPage {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		wait.until(ExpectedConditions.urlToBe(URL_CADASTRO));
 	}
-	
+
 	// espera a página de cadastro com erro carregar
 	private void esperaCarregarPaginaDeCadastroInvalido() {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -35,13 +42,13 @@ public class LoginPage {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.textToBe(By.id("create_account_error"), "Invalid email address."));
 	}
-	
+
 	// espera o texto de email invalido carregar
 	private void esperaCarregarBotaoNovoCadastro() {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("authentication")));
 	}
-	
+
 	// Verifica se estou na página de Login
 	public boolean estouNaPaginaDeLogin() {
 		return this.driver.getCurrentUrl().equals(URL_LOGIN);
@@ -58,8 +65,9 @@ public class LoginPage {
 		esperaCarregarPaginaDeCadastro();
 		return this.driver.getCurrentUrl().equals(URL_CADASTRO) && verificaTextoDaPaginaCadastroValido();
 	}
-	
-	// Verifica se estou na página de cadastro com erro após tentativa de novo cadastro
+
+	// Verifica se estou na página de cadastro com erro após tentativa de novo
+	// cadastro
 	public boolean estouNaPaginaDeCadastroComErro() {
 		esperaCarregarPaginaDeCadastroInvalido();
 		return this.driver.getCurrentUrl().equals(URL_CADASTRO_INVALIDO);
@@ -181,20 +189,20 @@ public class LoginPage {
 
 	public boolean mensagemCadastroInválido() {
 		return driver.getPageSource().contains("errors");
-					
+
 	}
-	
-	//login
+
+	// login
 	public void preencherEmailLogin(String email) {
 		WebElement txtEmail = driver.findElement(By.id("email"));
 		txtEmail.sendKeys(email);
 	}
-	
+
 	public void preencherSenhaDoLogin(String senha) {
 		WebElement txtEmail = driver.findElement(By.id("passwd"));
 		txtEmail.sendKeys(senha);
 	}
-	
+
 	public void ClicarEmFazerLogin() {
 		WebElement btnFazerLogin = driver.findElement(By.id("SubmitLogin"));
 		btnFazerLogin.click();
@@ -202,10 +210,7 @@ public class LoginPage {
 
 	public boolean mensagemAcessoInvalido() {
 		String pageSource = driver.getPageSource();
-		return pageSource.contains("Authentication failed.")
-				|| pageSource.contains("Invalid password.");
+		return pageSource.contains("Authentication failed.") || pageSource.contains("Invalid password.");
 	}
-
-	
 
 }

@@ -21,6 +21,10 @@ public class Browser {
 		return new HomePage(driver);
 	}
 	
+	public LoginPage getLoginPage() {
+		return new LoginPage(driver);
+	}
+	
 	public void fechar() {
 		//driver.manage().deleteAllCookies();
 		driver.close();

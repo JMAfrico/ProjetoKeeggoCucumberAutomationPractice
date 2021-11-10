@@ -3,8 +3,8 @@ package com.automationpractice.steps;
 import org.junit.Assert;
 
 import com.automationpractice.pages.Browser;
-import com.automationpractice.pages.LoginPage;
 import com.automationpractice.pages.HomePage;
+import com.automationpractice.pages.LoginPage;
 import com.automationpractice.pages.MinhaContaPage;
 
 import io.cucumber.java.After;
@@ -20,15 +20,16 @@ public class LoginStep {
 	private LoginPage loginPage;
 	private MinhaContaPage minhaContaPage;
 
-	@Before
+
+	@Before("@cadastro")
 	public void setup() {
 		browser = new Browser();//inicio o browser
 		homePage = browser.getHomePage();//inicio a homepage(construtor abre a página)(
 	}
 
-	@After
+	@After("@cadastro")
 	public void tearDown() {
-		
+		browser.fechar();
 	}
 
 	// @novo email
