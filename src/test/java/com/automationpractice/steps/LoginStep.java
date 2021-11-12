@@ -47,20 +47,14 @@ public class LoginStep {
 
 	@After("@login")
 	public void PrintCenario() {
+			
 		browser.fechar();
 		cenario.log("Automacao Finalizada - Status: " + cenario.getStatus());
-//		File File = ((TakesScreenshot) browser.getDriver()).getScreenshotAs(OutputType.FILE);
-//		try {
-//			FileUtils.copyFile(File, new File("target/screenshot/" + "/" + dataAtual() + "/" + cenario.getStatus() + "/"
-//					+ cenario.getSourceTagNames() + "/" + cenario.getName() + "." + (cenario.getLine()) + ".jpg"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 	}
 
-//	@After(order = 0, value = "@login")
+//	@After(order = 0)
 //	public void tearDown() {
-//		browser.fechar();
+//
 //	}
 
 	@Dado("que eu acessei a pagina de login")

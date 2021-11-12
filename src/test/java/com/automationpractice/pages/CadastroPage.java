@@ -1,6 +1,8 @@
 package com.automationpractice.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,6 +25,10 @@ public class CadastroPage {
 		cenario.log("Abrindo Pagina de Cadastro");
 		this.driver = driver;
 		esperaCarregarPaginaDeCadastro();
+		
+		TakesScreenshot screen = (TakesScreenshot)driver;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
 	}
 	
 	private void esperaCarregarPaginaDeCadastro() {
@@ -103,20 +109,37 @@ public class CadastroPage {
 	// Preenchimento dos campos de novo cadastro
 	public void selecionaSexo(String sexo) {
 		String msg = "Seleciono o sexo "+sexo;
+		
 		if (sexo.equals("Mr.")) {
 			WebElement rdGeneroMasc = driver.findElement(By.xpath("//input[@id='id_gender1']"));
 			rdGeneroMasc.click();
+			
+			TakesScreenshot screen = (TakesScreenshot)rdGeneroMasc;
+			byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+			cenario.attach(data, "image/png", null);
+			cenario.log(msg);
+			
 		} else if (sexo.equals("Mrs.")) {
 			WebElement rdGeneroFem = driver.findElement(By.xpath("//input[@id='id_gender2']"));
 			rdGeneroFem.click();
+			
+			TakesScreenshot screen = (TakesScreenshot)rdGeneroFem;
+			byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+			cenario.attach(data, "image/png", null);
+			cenario.log(msg);
 		}
-		cenario.log(msg);
 	}
 
 	public void preencherNome(String nome) {
 		String msg = "Preencho o nome "+nome;
 		WebElement txtNome = driver.findElement(By.id("customer_firstname"));
 		txtNome.sendKeys(nome);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtNome;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
+		
 		cenario.log(msg);
 	}
 
@@ -124,6 +147,11 @@ public class CadastroPage {
 		String msg = "Preencho o sobrenome "+sobrenome;
 		WebElement txtSobrenome = driver.findElement(By.id("customer_lastname"));
 		txtSobrenome.sendKeys(sobrenome);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtSobrenome;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
@@ -131,6 +159,10 @@ public class CadastroPage {
 		String msg = "Preencho a senha "+senha;
 		WebElement txtSenha = driver.findElement(By.id("passwd"));
 		txtSenha.sendKeys(senha);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtSenha;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
 		cenario.log(msg);
 	}
 
@@ -138,6 +170,11 @@ public class CadastroPage {
 		String msg = "Seleciono o dia de nascimento "+dia;
 		WebElement selectDia = driver.findElement(By.xpath("//*[@id='days']"));
 		selectDia.sendKeys(dia);
+		
+		TakesScreenshot screen = (TakesScreenshot)selectDia;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
@@ -145,6 +182,11 @@ public class CadastroPage {
 		String msg = "Seleciono o mes de nascimento "+mes;
 		WebElement selectMes = driver.findElement(By.xpath("//*[@id='months']"));
 		selectMes.sendKeys(mes);
+		
+		TakesScreenshot screen = (TakesScreenshot)selectMes;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
@@ -152,6 +194,11 @@ public class CadastroPage {
 		String msg = "Seleciono o ano de nascimento "+ano;
 		WebElement selectAno = driver.findElement(By.xpath("//*[@id='years']"));
 		selectAno.sendKeys(ano);
+		
+		TakesScreenshot screen = (TakesScreenshot)selectAno;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
@@ -159,6 +206,11 @@ public class CadastroPage {
 		String msg = "Preencho o endereco "+endereco;
 		WebElement txtEndereco = driver.findElement(By.id("address1"));
 		txtEndereco.sendKeys(endereco);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtEndereco;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
@@ -166,6 +218,11 @@ public class CadastroPage {
 		String msg = "Preencho a cidade "+cidade;
 		WebElement txtCidade = driver.findElement(By.id("city"));
 		txtCidade.sendKeys(cidade);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtCidade;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
@@ -173,13 +230,23 @@ public class CadastroPage {
 		String msg = "Preencho o estado "+estado;
 		WebElement txtEstado = driver.findElement(By.id("id_state"));
 		txtEstado.sendKeys(estado);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtEstado;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
 	public void preencherCep(String cep) {
 		String msg = "Preencho o cep "+cep;
+		
 		WebElement txtCep = driver.findElement(By.id("postcode"));
 		txtCep.sendKeys(cep);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtCep;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
 		cenario.log(msg);
 	}
 
@@ -187,6 +254,11 @@ public class CadastroPage {
 		String msg = "Seleciono o país "+pais;
 		WebElement txtPais = driver.findElement(By.id("id_country"));
 		txtPais.sendKeys(pais);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtPais;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
@@ -194,6 +266,11 @@ public class CadastroPage {
 		String msg = "Preencho o numero de celular "+celular;
 		WebElement txtCelular = driver.findElement(By.id("phone_mobile"));
 		txtCelular.sendKeys(celular);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtCelular;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
@@ -202,12 +279,23 @@ public class CadastroPage {
 		WebElement txtAlias = driver.findElement(By.id("alias"));
 		txtAlias.clear();
 		txtAlias.sendKeys(alias);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtAlias;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
 		cenario.log(msg);
 	}
 
 	public void btnConfirmarInformacoesDeNovoCadastro() {
 		String msg = "Clico no botão criar conta";
-		driver.findElement(By.id("submitAccount")).click();
+		
+		WebElement btnSalvar = driver.findElement(By.id("submitAccount"));
+		
+		TakesScreenshot screen = (TakesScreenshot)btnSalvar;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
+		btnSalvar.click();
 		cenario.log(msg);
 	}
 
@@ -219,11 +307,20 @@ public class CadastroPage {
 	public void mensagemEmailJaCadastrado() {
 		String msg = "Valido a mensagem de email ja cadastrado";
 		driver.getPageSource().contains("email address has already been registered.");
+		
+
+		
 		cenario.log(msg);
 	}
 
 	public boolean mensagemCadastroInválido() {
 		String msg = "Valido a mensagem de cadastro invalido";
+		
+		WebElement erro = driver.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/div"));
+		TakesScreenshot screen = (TakesScreenshot)erro;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 		return driver.getPageSource().contains("errors");
 		

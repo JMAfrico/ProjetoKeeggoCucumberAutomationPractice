@@ -1,6 +1,8 @@
 package com.automationpractice.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,6 +27,10 @@ public class LoginPage {
 			this.driver = driver;
 			driver.navigate().to(URL_LOGIN);
 			driver.manage().window().maximize();	
+			
+			TakesScreenshot screen = (TakesScreenshot)driver;
+			byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+			cenario.attach(data, "image/png", null);
 	}
 
 	// espera a página de cadastro carregar
@@ -60,6 +66,12 @@ public class LoginPage {
 	public boolean estouNaPaginaDeLoginComEmailInvalido() {
 		String msg = "Valido mensagem de email invalido";
 		esperaCarregarTextoEmailInvalido();
+		
+		WebElement erro = driver.findElement(By.xpath("//*[@id=\"create_account_error\"]"));
+		TakesScreenshot screen = (TakesScreenshot)erro;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 		return this.driver.getCurrentUrl().equals(URL_LOGIN) && verificaTextoDaPaginaEmailInvalido();
 		
@@ -82,7 +94,14 @@ public class LoginPage {
 	
 	public void validarEmailParaCadastro(String email) {
 		String msg = "Digito email para cadastro "+email;
-		driver.findElement(By.id("email_create")).sendKeys(email);
+		
+		WebElement txtValidarEmail = driver.findElement(By.id("email_create"));
+		txtValidarEmail.sendKeys(email);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtValidarEmail;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
@@ -90,7 +109,14 @@ public class LoginPage {
 	public void btnValidarEmailParaCadastro() {
 		String msg = "Clico no botão de cadastro ";
 		esperaCarregarBotaoNovoCadastro();
-		driver.findElement(By.id("SubmitCreate")).submit();
+		
+		WebElement btnValidarEmail = driver.findElement(By.id("SubmitCreate"));
+		
+		TakesScreenshot screen = (TakesScreenshot)btnValidarEmail;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
+		btnValidarEmail.submit();
 		cenario.log(msg);
 	}
 //
@@ -195,6 +221,12 @@ public class LoginPage {
 	public void mensagemEmailJaCadastrado() {
 		String msg = "Valido mensagem de email ja cadastrado";
 		driver.getPageSource().contains("email address has already been registered.");
+		
+		WebElement erro = driver.findElement(By.xpath("//*[@id=\"create_account_error\"]"));
+		
+		TakesScreenshot screen = (TakesScreenshot)erro;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
 		cenario.log(msg);
 	}
 //
@@ -208,27 +240,48 @@ public class LoginPage {
 		String msg = "Preenchendo email "+email;
 		WebElement txtEmail = driver.findElement(By.id("email"));
 		txtEmail.sendKeys(email);
+			
+		TakesScreenshot screen = (TakesScreenshot)txtEmail;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
 	public void preencherSenhaDoLogin(String senha) {
 		String msg = "Preenchendo senha "+senha;
-		WebElement txtEmail = driver.findElement(By.id("passwd"));
-		txtEmail.sendKeys(senha);
+		WebElement txtSenha = driver.findElement(By.id("passwd"));
+		txtSenha.sendKeys(senha);
+		
+		TakesScreenshot screen = (TakesScreenshot)txtSenha;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		cenario.log(msg);
 	}
 
 	public void ClicarEmFazerLogin() {
 		String msg = "Clico no botao de fazer login";
 		WebElement btnFazerLogin = driver.findElement(By.id("SubmitLogin"));
+		
+		TakesScreenshot screen = (TakesScreenshot)btnFazerLogin;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", btnFazerLogin.getText());
+		
 		btnFazerLogin.click();
 		cenario.log(msg);
 	}
 
 	public boolean mensagemAcessoInvalido() {
 		String msg = "Valido mensagem de acesso invalido";
-		cenario.log(msg);
+			
+		WebElement erro = driver.findElement(By.xpath("//*[@id=\"center_column\"]/div[1]"));
+		TakesScreenshot screen = (TakesScreenshot)erro;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		String pageSource = driver.getPageSource();
+		cenario.log(msg);
 		return pageSource.contains("Authentication failed.") || pageSource.contains("Invalid password.");
 		
 	}

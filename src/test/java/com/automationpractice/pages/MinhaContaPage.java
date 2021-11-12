@@ -1,6 +1,8 @@
 package com.automationpractice.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,6 +26,9 @@ public class MinhaContaPage {
 		cenario.log("Acessando minha conta");
 		this.driver = driver;
 
+		TakesScreenshot screen = (TakesScreenshot)driver;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
 	}
 	
 	private void esperaCarregarPaginaMinhaConta() {

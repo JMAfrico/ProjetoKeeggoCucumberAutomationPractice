@@ -1,6 +1,8 @@
 package com.automationpractice.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -16,6 +18,9 @@ public class CarrinhoPage {
 	public CarrinhoPage(WebDriver driver, Scenario cenario) {
 		this.cenario = cenario;
 		this.driver = driver;
+		TakesScreenshot screen = (TakesScreenshot)driver;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
 	}
 	
 	//verifica se estou na página de carrinho
@@ -29,6 +34,11 @@ public class CarrinhoPage {
 		WebElement linhaDaTabela = driver.findElement(By.cssSelector("#cart_summary tbody tr"));
 		WebElement colunaDaTabela = linhaDaTabela.findElement(By.cssSelector("td:nth-child(6)"));
 		WebElement btnRemover = colunaDaTabela.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/div[2]/table/tbody/tr/td[7]/div/a/i"));
+		
+		TakesScreenshot screen = (TakesScreenshot)linhaDaTabela;
+		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
+		cenario.attach(data, "image/png", null);
+		
 		btnRemover.click();
 		cenario.log(msg);
 	}
