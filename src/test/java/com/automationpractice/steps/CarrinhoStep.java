@@ -2,6 +2,16 @@ package com.automationpractice.steps;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
+
+import javax.print.attribute.standard.DateTimeAtCompleted;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
 import com.automationpractice.pages.Browser;
 import com.automationpractice.pages.CarrinhoPage;
 import com.automationpractice.pages.HomePage;
@@ -10,39 +20,45 @@ import com.automationpractice.pages.MinhaContaPage;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.it.Date;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 
 public class CarrinhoStep {
-	
+
 	private Browser browser;
-	private HomePage homePage;//inicio o homePage
+	private HomePage homePage;// inicio o homePage
 	private LoginPage loginPage;
 	private MinhaContaPage minhaContaPage;
 	private CarrinhoPage carrinhoPage;
+	private Scenario cenario;
 
 	@Before("@carrinho")
-	public void setup() {
-		browser = new Browser();//inicio o browser
-		homePage = browser.getHomePage();//inicio a homepage(construtor abre a página)(
+	public void setup(Scenario cenario) {
+		this.cenario = cenario;
+		this.cenario.log("Iniciando automacao...");
+		browser = new Browser(this.cenario);// inicio o browser
+		homePage = browser.getHomePage();// inicio a homepage(construtor abre a página)(
 		loginPage = browser.getLoginPage();
 	}
-	
+
 	@After("@carrinho")
 	public void tearDown() {
 		browser.fechar();
+		cenario.log("Automacao Finalizada - Status: " + cenario.getStatus());
 	}
-	
+
 	@Dado("que eu tenho estou logado no site com email {string} e senha {string}")
-	public void queEuTenhoEstouLogadoNoSiteComEmail(String email,String senha) {
+	public void queEuTenhoEstouLogadoNoSiteComEmail(String email, String senha) {
 		loginPage.preencherEmailLogin(email);
 		loginPage.preencherSenhaDoLogin(senha);
 		loginPage.ClicarEmFazerLogin();
 		minhaContaPage = loginPage.navegarParaPaginaDeMinhaConta();
 		homePage = minhaContaPage.navegarParaHomePage();
 	}
-	
+
 	@Quando("pesquiso e seleciono o produto {string}")
 	public void pesquisoESelecionoOProduto(String pesquisa) {
 		homePage.pesquisaProduto(pesquisa);
@@ -55,12 +71,11 @@ public class CarrinhoStep {
 		carrinhoPage = homePage.navegarParaCarrinho();
 		assertTrue(carrinhoPage.estouNaPaginaDeCarrinho());
 	}
-	
+
 	@Entao("o produto e removido do carrinho de compras")
 	public void oProdutoERemovidoDoCarrinhoDeCompras() {
 		carrinhoPage.removerProduto();
 		assertTrue(carrinhoPage.carrinhoEstaVazio());
 	}
-
 
 }

@@ -1,0 +1,152 @@
+[
+  {
+    "line": 4,
+    "elements": [
+      {
+        "start_timestamp": "2021-11-12T14:55:38.576Z",
+        "before": [
+          {
+            "output": [
+              "Iniciando automacao...",
+              "Abrindo Home Page",
+              "Abrindo Pagina de Login"
+            ],
+            "result": {
+              "duration": 17556036900,
+              "status": "passed"
+            },
+            "match": {
+              "location": "com.automationpractice.steps.CarrinhoStep.setup(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "line": 14,
+        "name": "Remover produto do carrinho de compras",
+        "description": "",
+        "id": "carrinho-de-compras;remover-produto-do-carrinho-de-compras",
+        "after": [
+          {
+            "output": [
+              "Automacao Finalizada - Status: PASSED"
+            ],
+            "result": {
+              "duration": 78742000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "com.automationpractice.steps.CarrinhoStep.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Cenario",
+        "steps": [
+          {
+            "output": [
+              "Preenchendo email fulano@hotmail.com",
+              "Preenchendo senha 123456",
+              "Clico no botao de fazer login",
+              "Acessando minha conta",
+              "Abrindo Home Page"
+            ],
+            "result": {
+              "duration": 25779787900,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "que eu tenho estou logado no site com email \"fulano@hotmail.com\" e senha \"123456\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"fulano@hotmail.com\"",
+                  "offset": 44
+                },
+                {
+                  "val": "\"123456\"",
+                  "offset": 73
+                }
+              ],
+              "location": "com.automationpractice.steps.CarrinhoStep.queEuTenhoEstouLogadoNoSiteComEmail(java.lang.String,java.lang.String)"
+            },
+            "keyword": "Dado "
+          },
+          {
+            "output": [
+              "Pesquiso o produto t-shirt"
+            ],
+            "result": {
+              "duration": 8407716600,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "pesquiso e seleciono o produto \"t-shirt\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"t-shirt\"",
+                  "offset": 31
+                }
+              ],
+              "location": "com.automationpractice.steps.CarrinhoStep.pesquisoESelecionoOProduto(java.lang.String)"
+            },
+            "keyword": "Quando "
+          },
+          {
+            "output": [
+              "Mudo a visualizacao dos produtos para Modo Lista",
+              "Finalizo o carrinho "
+            ],
+            "result": {
+              "duration": 17514725400,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "o produto e adicionado ao carrinho de compras",
+            "match": {
+              "location": "com.automationpractice.steps.CarrinhoStep.o_produto_e_adicionado_ao_carrinho_de_compras()"
+            },
+            "keyword": "Entao "
+          },
+          {
+            "output": [
+              "Clico em remover produto "
+            ],
+            "result": {
+              "duration": 131227500,
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "o produto e removido do carrinho de compras",
+            "match": {
+              "location": "com.automationpractice.steps.CarrinhoStep.oProdutoERemovidoDoCarrinhoDeCompras()"
+            },
+            "keyword": "E "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@carrinho"
+          },
+          {
+            "name": "@remover_produto"
+          }
+        ]
+      }
+    ],
+    "name": "Carrinho de compras",
+    "description": "  Como usuario cadastrado, quero ter um carrinho de compras",
+    "id": "carrinho-de-compras",
+    "keyword": "Funcionalidade",
+    "uri": "classpath:features/carrinho/carrinho.feature",
+    "tags": [
+      {
+        "name": "@carrinho",
+        "type": "Tag",
+        "location": {
+          "line": 3,
+          "column": 1
+        }
+      }
+    ]
+  }
+]

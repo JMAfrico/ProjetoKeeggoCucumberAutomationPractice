@@ -4,13 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import io.cucumber.java.Scenario;
+
 public class CarrinhoPage {
 
 	private WebDriver driver;
+	Scenario cenario;
 	
 	private static String URL_CARRINHO = "http://automationpractice.com/index.php?controller=order";
 	
-	public CarrinhoPage(WebDriver driver) {
+	public CarrinhoPage(WebDriver driver, Scenario cenario) {
+		this.cenario = cenario;
 		this.driver = driver;
 	}
 	
@@ -19,15 +23,18 @@ public class CarrinhoPage {
 		return this.driver.getCurrentUrl().equals(URL_CARRINHO);
 	}
 
-	public void removerProduto() {													//id da table/ body da table / linha / coluna
+	public void removerProduto() {		
+		String msg = "Clico em remover produto ";
 		//WebElement removerItem = driver.findElement(By.cssSelector("#cart_summary tbody tr"));
 		WebElement linhaDaTabela = driver.findElement(By.cssSelector("#cart_summary tbody tr"));
 		WebElement colunaDaTabela = linhaDaTabela.findElement(By.cssSelector("td:nth-child(6)"));
 		WebElement btnRemover = colunaDaTabela.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/div[2]/table/tbody/tr/td[7]/div/a/i"));
 		btnRemover.click();
+		cenario.log(msg);
 	}
 	
 	public boolean carrinhoEstaVazio() {
+		String msg = "Valido mensagem que o carrinho esta vazio ";
 		return driver.getPageSource().contains("Your shopping cart is empty.");
 	}
 }

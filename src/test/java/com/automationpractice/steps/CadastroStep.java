@@ -10,31 +10,35 @@ import com.automationpractice.pages.MinhaContaPage;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 
 public class CadastroStep {
 
-	//se nao funcionar é só apagar essa classe
+	// se nao funcionar é só apagar essa classe
 	private Browser browser;
-	private HomePage homePage;//inicio o homePage
+	private HomePage homePage;// inicio o homePage
 	private LoginPage loginPage;
 	private MinhaContaPage minhaContaPage;
 	private CadastroPage cadastroPage;
-
+	private Scenario cenario;
 
 	@Before("@cadastro")
-	public void setup() {
-		browser = new Browser();//inicio o browser
-		homePage = browser.getHomePage();//inicio a homepage(construtor abre a página)(
+	public void setup(Scenario cenario) {
+		this.cenario = cenario;
+		browser = new Browser(cenario);// inicio o browser
+		homePage = browser.getHomePage();// inicio a homepage(construtor abre a página)(
+		this.cenario.log("Iniciando automacao...");
 	}
-	
+
 	@After("@cadastro")
 	public void tearDown() {
 		browser.fechar();
+		cenario.log("Automacao Finalizada - Status: " + cenario.getStatus());
 	}
-	
+
 	// @novo email
 	@Dado("que eu estou na pagina de login")
 	public void queEuEstouNaPaginaDeLogin() {
@@ -83,7 +87,7 @@ public class CadastroStep {
 		loginPage = homePage.navegarParaPaginaDeLogin();
 		loginPage.validarEmailParaCadastro(email);
 		loginPage.btnValidarEmailParaCadastro();
-		
+
 	}
 
 	@Dado("que eu estou na pagina de cadastro de usuario")
@@ -172,7 +176,7 @@ public class CadastroStep {
 	@Entao("eu sou redirecionado para o menu minha conta")
 	public void souRedirecionadoParaOMenuMinhaConta() {
 		minhaContaPage = cadastroPage.navegarParaPaginaDeMinhaConta();// para cá
-		//Assert.assertFalse(cadastroPage.estouNaPaginaDeCadastro());
+		// Assert.assertFalse(cadastroPage.estouNaPaginaDeCadastro());
 		Assert.assertTrue(minhaContaPage.estouNaPaginaMinhaConta());
 
 	}
@@ -182,7 +186,5 @@ public class CadastroStep {
 		Assert.assertTrue(cadastroPage.estouNaPaginaDeCadastroComErro());
 		Assert.assertTrue(cadastroPage.mensagemCadastroInválido());
 	}
-	
-	
 
 }

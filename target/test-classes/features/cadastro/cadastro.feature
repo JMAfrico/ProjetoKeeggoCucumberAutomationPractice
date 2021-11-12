@@ -26,7 +26,7 @@ Funcionalidade: Cadastro de usuario
     
   @autenticao_valida
     Cenario: Autenticacao de cadastro valido
-    Dado que tenho um email "joKK5dd@gmail.com" valido de novo usuario 
+    Dado que tenho um email "joKK555@gmail.com" valido de novo usuario 
     E que eu estou na pagina de cadastro de usuario
     Quando informo o genero "Mr."
     E informo o nome "Maria" 

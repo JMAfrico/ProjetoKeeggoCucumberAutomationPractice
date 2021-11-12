@@ -6,9 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.cucumber.java.Scenario;
+
 public class MinhaContaPage {
 
 	private WebDriver driver;
+	private Scenario cenario;
 
 	private static String URL_MINHA_CONTA = "http://automationpractice.com/index.php?controller=my-account";
 
@@ -16,7 +19,9 @@ public class MinhaContaPage {
 		//driver.navigate().to(URL_MINHA_CONTA);
 	}
 	
-	public MinhaContaPage(WebDriver driver) {
+	public MinhaContaPage(WebDriver driver, Scenario cenario) {
+		this.cenario = cenario;
+		cenario.log("Acessando minha conta");
 		this.driver = driver;
 
 	}
@@ -41,14 +46,14 @@ public class MinhaContaPage {
 	public MinhaContaPage navegarParaPaginaDeMinhaConta() {
 		WebElement btnFazerLogin = driver.findElement(By.id("SubmitLogin"));
 		btnFazerLogin.submit();
-		return new MinhaContaPage(driver);
+		return new MinhaContaPage(driver,cenario);
 	}
 	
 	//dentro do menu de login, ao apertar para homepage,levo o drive comigo
 	public HomePage navegarParaHomePage() {
 		WebElement btnHomePage = driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li/a"));
 		btnHomePage.click();
-		return new HomePage(driver);
+		return new HomePage(driver,cenario);
 	}
 	//fazer login
 	

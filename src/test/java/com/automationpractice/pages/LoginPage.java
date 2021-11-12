@@ -6,9 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.cucumber.java.Scenario;
+
 public class LoginPage {
 
 	private WebDriver driver;
+	private Scenario cenario;
 
 	private static String URL_LOGIN = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 
@@ -16,11 +19,12 @@ public class LoginPage {
 		
 	}
 	
-	public LoginPage(WebDriver driver) {	
+	public LoginPage(WebDriver driver, Scenario cenario) {	
+			this.cenario = cenario;
+			cenario.log("Abrindo Pagina de Login");
 			this.driver = driver;
 			driver.navigate().to(URL_LOGIN);
-			driver.manage().window().maximize();
-		
+			driver.manage().window().maximize();	
 	}
 
 	// espera a página de cadastro carregar
@@ -54,8 +58,11 @@ public class LoginPage {
 //
 	// Verifica se estou na página de Login com erro
 	public boolean estouNaPaginaDeLoginComEmailInvalido() {
+		String msg = "Valido mensagem de email invalido";
 		esperaCarregarTextoEmailInvalido();
+		cenario.log(msg);
 		return this.driver.getCurrentUrl().equals(URL_LOGIN) && verificaTextoDaPaginaEmailInvalido();
+		
 	}
 //
 //	// Verifica se estou na página de cadastro
@@ -72,15 +79,19 @@ public class LoginPage {
 //	}
 //
 	// preenche o campo email para validação de inicio de cadastro
+	
 	public void validarEmailParaCadastro(String email) {
+		String msg = "Digito email para cadastro "+email;
 		driver.findElement(By.id("email_create")).sendKeys(email);
+		cenario.log(msg);
 	}
 
 	// clica no botão validar email para cadastro
 	public void btnValidarEmailParaCadastro() {
+		String msg = "Clico no botão de cadastro ";
 		esperaCarregarBotaoNovoCadastro();
 		driver.findElement(By.id("SubmitCreate")).submit();
-
+		cenario.log(msg);
 	}
 //
 //	// Confirmação do texto que estou na página de cadastro
@@ -178,11 +189,13 @@ public class LoginPage {
 //
 	public MinhaContaPage navegarParaPaginaDeMinhaConta() {
 		// esperaCarregarPaginaDeCadastro();
-		return new MinhaContaPage(driver);
+		return new MinhaContaPage(driver,cenario);
 	}
 //
 	public void mensagemEmailJaCadastrado() {
+		String msg = "Valido mensagem de email ja cadastrado";
 		driver.getPageSource().contains("email address has already been registered.");
+		cenario.log(msg);
 	}
 //
 //	public boolean mensagemCadastroInválido() {
@@ -192,27 +205,36 @@ public class LoginPage {
 
 	// login
 	public void preencherEmailLogin(String email) {
+		String msg = "Preenchendo email "+email;
 		WebElement txtEmail = driver.findElement(By.id("email"));
 		txtEmail.sendKeys(email);
+		cenario.log(msg);
 	}
 
 	public void preencherSenhaDoLogin(String senha) {
+		String msg = "Preenchendo senha "+senha;
 		WebElement txtEmail = driver.findElement(By.id("passwd"));
 		txtEmail.sendKeys(senha);
+		cenario.log(msg);
 	}
 
 	public void ClicarEmFazerLogin() {
+		String msg = "Clico no botao de fazer login";
 		WebElement btnFazerLogin = driver.findElement(By.id("SubmitLogin"));
 		btnFazerLogin.click();
+		cenario.log(msg);
 	}
 
 	public boolean mensagemAcessoInvalido() {
+		String msg = "Valido mensagem de acesso invalido";
+		cenario.log(msg);
 		String pageSource = driver.getPageSource();
 		return pageSource.contains("Authentication failed.") || pageSource.contains("Invalid password.");
+		
 	}
 	
 	public CadastroPage navegarParaPaginaDeCadastro() {
-		return new CadastroPage(driver);
+		return new CadastroPage(driver,cenario);
 	}
 
 }
