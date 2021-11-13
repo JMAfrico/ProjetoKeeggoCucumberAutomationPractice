@@ -18,7 +18,7 @@ public class CadastroPage {
 	private static String URL_LOGIN = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 	private static String URL_CADASTRO = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
 	private static String URL_CADASTRO_INVALIDO = "http://automationpractice.com/index.php?controller=authentication";
-	private static String URL_MINHA_CONTA = "http://automationpractice.com/index.php?controller=my-account";
+	//private static String URL_MINHA_CONTA = "http://automationpractice.com/index.php?controller=my-account";
 
 	public CadastroPage(WebDriver driver, Scenario cenario) {
 		this.cenario = cenario;
@@ -36,10 +36,10 @@ public class CadastroPage {
 		wait.until(ExpectedConditions.urlToBe(URL_CADASTRO));
 	}
 	
-	private void esperaCarregarPaginaMinhaConta() {
-		WebDriverWait wait = new WebDriverWait(driver, 5);
-		wait.until(ExpectedConditions.urlToBe(URL_MINHA_CONTA));
-	}
+//	private void esperaCarregarPaginaMinhaConta() {
+//		WebDriverWait wait = new WebDriverWait(driver, 5);
+//		wait.until(ExpectedConditions.urlToBe(URL_MINHA_CONTA));
+//	}
 
 	// espera a página de cadastro com erro carregar
 	private void esperaCarregarPaginaDeCadastroInvalido() {

@@ -45,6 +45,7 @@ public class CarrinhoPage {
 	
 	public boolean carrinhoEstaVazio() {
 		String msg = "Valido mensagem que o carrinho esta vazio ";
+		cenario.log(msg);
 		return driver.getPageSource().contains("Your shopping cart is empty.");
 	}
 }

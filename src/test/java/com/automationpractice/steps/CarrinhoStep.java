@@ -2,16 +2,6 @@ package com.automationpractice.steps;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDateTime;
-
-import javax.print.attribute.standard.DateTimeAtCompleted;
-
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-
 import com.automationpractice.pages.Browser;
 import com.automationpractice.pages.CarrinhoPage;
 import com.automationpractice.pages.HomePage;
@@ -21,7 +11,6 @@ import com.automationpractice.pages.MinhaContaPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.it.Date;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;

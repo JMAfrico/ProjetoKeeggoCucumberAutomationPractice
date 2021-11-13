@@ -1,19 +1,5 @@
 package com.automationpractice.steps;
 
-import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-
-import com.automationpractice.pages.Browser;
-import com.automationpractice.pages.LoginPage;
-import com.automationpractice.pages.HomePage;
-import com.automationpractice.pages.MinhaContaPage;
-
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.pt.Dado;
-import io.cucumber.java.pt.Entao;
-import io.cucumber.java.pt.Quando;
-
 public class MinhaContaStep {
 
 
