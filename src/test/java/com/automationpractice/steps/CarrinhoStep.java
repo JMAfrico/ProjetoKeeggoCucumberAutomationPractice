@@ -18,7 +18,7 @@ import io.cucumber.java.pt.Quando;
 public class CarrinhoStep {
 
 	private Browser browser;
-	private HomePage homePage;// inicio o homePage
+	private HomePage homePage;
 	private LoginPage loginPage;
 	private MinhaContaPage minhaContaPage;
 	private CarrinhoPage carrinhoPage;
@@ -28,8 +28,8 @@ public class CarrinhoStep {
 	public void setup(Scenario cenario) {
 		this.cenario = cenario;
 		this.cenario.log("Iniciando automacao...");
-		browser = new Browser(this.cenario);// inicio o browser
-		homePage = browser.getHomePage();// inicio a homepage(construtor abre a página)(
+		browser = new Browser(this.cenario);
+		homePage = browser.getHomePage();
 		loginPage = browser.getLoginPage();
 	}
 
@@ -43,7 +43,7 @@ public class CarrinhoStep {
 	public void queEuTenhoEstouLogadoNoSiteComEmail(String email, String senha) {
 		loginPage.preencherEmailLogin(email);
 		loginPage.preencherSenhaDoLogin(senha);
-		loginPage.ClicarEmFazerLogin();
+		loginPage.clicarEmFazerLogin();
 		minhaContaPage = loginPage.navegarParaPaginaDeMinhaConta();
 		homePage = minhaContaPage.navegarParaHomePage();
 	}
@@ -55,7 +55,7 @@ public class CarrinhoStep {
 
 	@Entao("o produto e adicionado ao carrinho de compras")
 	public void o_produto_e_adicionado_ao_carrinho_de_compras() {
-		homePage.MudaVisualizacaoDosItens();
+		homePage.mudaVisualizacaoDosItens();
 		homePage.adicionaProdutoAoCarrinhoFinalizandoCompra();
 		carrinhoPage = homePage.navegarParaCarrinho();
 		assertTrue(carrinhoPage.estouNaPaginaDeCarrinho());

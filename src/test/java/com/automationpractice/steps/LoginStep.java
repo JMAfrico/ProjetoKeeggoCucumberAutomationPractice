@@ -6,6 +6,7 @@ import com.automationpractice.pages.Browser;
 import com.automationpractice.pages.HomePage;
 import com.automationpractice.pages.LoginPage;
 import com.automationpractice.pages.MinhaContaPage;
+import com.automationpractice.support.hooks.Hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -17,37 +18,29 @@ import io.cucumber.java.pt.Quando;
 public class LoginStep {
 
 	private Browser browser;
-	private HomePage homePage;// inicio o homePage
+	private HomePage homePage;
 	private LoginPage loginPage;
 	private MinhaContaPage minhaContaPage;
 	private Scenario cenario;
 
-//	public String dataAtual() {
-//		Date data = new Date();
-//		SimpleDateFormat formatar = new SimpleDateFormat("dd-MM-yyyy");
-//		String dataFormatada = formatar.format(data);
-//		return dataFormatada;
+//	public LoginStep() {
+//		browser = new Browser(cenario);
+//		homePage = browser.getHomePage();
 //	}
-
+	
 	@Before("@login")
 	public void setup(Scenario cenario) {
 		this.cenario = cenario;
-		this.cenario.log("Iniciando automacao...");
-		browser = new Browser(this.cenario);// inicio o browser
-		homePage = browser.getHomePage();// inicio a homepage(construtor abre a página)(
+		cenario.log("Iniciando automacao...");
+		browser = new Browser(cenario);
+		homePage = browser.getHomePage();
 	}
 
 	@After("@login")
 	public void PrintCenario() {
-			
 		browser.fechar();
 		cenario.log("Automacao Finalizada - Status: " + cenario.getStatus());
 	}
-
-//	@After(order = 0)
-//	public void tearDown() {
-//
-//	}
 
 	@Dado("que eu acessei a pagina de login")
 	public void queEuEstouNaPaginaDeLogin() {
@@ -67,14 +60,13 @@ public class LoginStep {
 
 	@Quando("seleciono a acao de logar no site")
 	public void selecionoAAcaoDeLogarNoSite() {
-		loginPage.ClicarEmFazerLogin();
+		loginPage.clicarEmFazerLogin();
 	}
 
 	@Entao("sou redirecionado para o menu da minha conta")
 	public void sou_redirecionado_para_o_menu_da_minha_conta() {
 		minhaContaPage = loginPage.navegarParaPaginaDeMinhaConta();// para cá
 		Assert.assertTrue(minhaContaPage.estouNaPaginaMinhaConta());
-		// minhaContaPage.navegarParaHomePage();
 	}
 
 	@Entao("aparece uma mensagem de acesso invalido")

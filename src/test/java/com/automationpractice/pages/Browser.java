@@ -10,7 +10,6 @@ public class Browser {
 	private WebDriver driver;
 	private Scenario cenario;
 
-
 	public Browser(Scenario cenario) {
 		this.cenario = cenario;
 		this.driver = new BrowserFactory().createWebDriver();
@@ -22,15 +21,14 @@ public class Browser {
 	}
 
 	public HomePage getHomePage() {
-		return new HomePage(driver,cenario);
+		return new HomePage(driver, cenario);
 	}
-	
+
 	public LoginPage getLoginPage() {
-		return new LoginPage(driver,cenario);
+		return new LoginPage(driver, cenario);
 	}
-	
+
 	public void fechar() {
-		//driver.manage().deleteAllCookies();
 		driver.close();
 	}
 }

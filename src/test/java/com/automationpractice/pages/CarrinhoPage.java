@@ -12,37 +12,36 @@ public class CarrinhoPage {
 
 	private WebDriver driver;
 	Scenario cenario;
-	
+
 	private static String URL_CARRINHO = "http://automationpractice.com/index.php?controller=order";
-	
+
 	public CarrinhoPage(WebDriver driver, Scenario cenario) {
 		this.cenario = cenario;
 		this.driver = driver;
-		TakesScreenshot screen = (TakesScreenshot)driver;
+		TakesScreenshot screen = (TakesScreenshot) driver;
 		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
 		cenario.attach(data, "image/png", null);
 	}
-	
-	//verifica se estou na página de carrinho
+
 	public boolean estouNaPaginaDeCarrinho() {
 		return this.driver.getCurrentUrl().equals(URL_CARRINHO);
 	}
 
-	public void removerProduto() {		
+	public void removerProduto() {
 		String msg = "Clico em remover produto ";
-		//WebElement removerItem = driver.findElement(By.cssSelector("#cart_summary tbody tr"));
 		WebElement linhaDaTabela = driver.findElement(By.cssSelector("#cart_summary tbody tr"));
 		WebElement colunaDaTabela = linhaDaTabela.findElement(By.cssSelector("td:nth-child(6)"));
-		WebElement btnRemover = colunaDaTabela.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/div[2]/table/tbody/tr/td[7]/div/a/i"));
-		
-		TakesScreenshot screen = (TakesScreenshot)linhaDaTabela;
+		WebElement btnRemover = colunaDaTabela
+				.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/div[2]/table/tbody/tr/td[7]/div/a/i"));
+
+		TakesScreenshot screen = (TakesScreenshot) linhaDaTabela;
 		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
 		cenario.attach(data, "image/png", null);
-		
+
 		btnRemover.click();
 		cenario.log(msg);
 	}
-	
+
 	public boolean carrinhoEstaVazio() {
 		String msg = "Valido mensagem que o carrinho esta vazio ";
 		cenario.log(msg);

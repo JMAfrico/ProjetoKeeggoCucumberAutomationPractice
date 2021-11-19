@@ -18,7 +18,6 @@ public class CadastroPage {
 	private static String URL_LOGIN = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 	private static String URL_CADASTRO = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
 	private static String URL_CADASTRO_INVALIDO = "http://automationpractice.com/index.php?controller=authentication";
-	//private static String URL_MINHA_CONTA = "http://automationpractice.com/index.php?controller=my-account";
 
 	public CadastroPage(WebDriver driver, Scenario cenario) {
 		this.cenario = cenario;
@@ -35,78 +34,60 @@ public class CadastroPage {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.urlToBe(URL_CADASTRO));
 	}
-	
-//	private void esperaCarregarPaginaMinhaConta() {
-//		WebDriverWait wait = new WebDriverWait(driver, 5);
-//		wait.until(ExpectedConditions.urlToBe(URL_MINHA_CONTA));
-//	}
 
-	// espera a página de cadastro com erro carregar
 	private void esperaCarregarPaginaDeCadastroInvalido() {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		wait.until(ExpectedConditions.urlToBe(URL_CADASTRO_INVALIDO));
 	}
 
-	// espera o texto de email invalido carregar
 	private void esperaCarregarTextoEmailInvalido() {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.textToBe(By.id("create_account_error"), "Invalid email address."));
 	}
 
-	// espera o texto de email invalido carregar
 	private void esperaCarregarBotaoNovoCadastro() {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("authentication")));
 	}
 
-	// Verifica se estou na página de Login
 	public boolean estouNaPaginaDeLogin() {
 		return this.driver.getCurrentUrl().equals(URL_LOGIN);
 	}
 
-	// Verifica se estou na página de Login com erro
 	public boolean estouNaPaginaDeLoginComEmailInvalido() {
 		esperaCarregarTextoEmailInvalido();
 		return this.driver.getCurrentUrl().equals(URL_LOGIN) && verificaTextoDaPaginaEmailInvalido();
 	}
 
-	// Verifica se estou na página de cadastro
 	public boolean estouNaPaginaDeCadastro() {
 		esperaCarregarPaginaDeCadastro();
 		return this.driver.getCurrentUrl().equals(URL_CADASTRO) && verificaTextoDaPaginaCadastroValido();
 	}
 
-	// Verifica se estou na página de cadastro com erro após tentativa de novo
 	// cadastro
 	public boolean estouNaPaginaDeCadastroComErro() {
 		esperaCarregarPaginaDeCadastroInvalido();
 		return this.driver.getCurrentUrl().equals(URL_CADASTRO_INVALIDO);
 	}
 
-	// preenche o campo email para validação de inicio de cadastro
 	public void validarEmailParaCadastro(String email) {
 		driver.findElement(By.id("email_create")).sendKeys(email);
 	}
 
-	// clica no botão validar email para cadastro
 	public void btnValidarEmailParaCadastro() {
 		esperaCarregarBotaoNovoCadastro();
 		driver.findElement(By.id("SubmitCreate")).submit();
 
 	}
 
-	// Confirmação do texto que estou na página de cadastro
 	public boolean verificaTextoDaPaginaCadastroValido() {
 		return driver.getPageSource().contains("Create an account");
 	}
 
-	// Confirmação do texto que deu erro no preenchimento de cadastro com email
-	// inválido
 	public boolean verificaTextoDaPaginaEmailInvalido() {
 		return driver.getPageSource().contains("Invalid email address.");
 	}
 
-	// Preenchimento dos campos de novo cadastro
 	public void selecionaSexo(String sexo) {
 		String msg = "Seleciono o sexo "+sexo;
 		
@@ -138,7 +119,6 @@ public class CadastroPage {
 		TakesScreenshot screen = (TakesScreenshot)txtNome;
 		byte[] data = screen.getScreenshotAs(OutputType.BYTES);
 		cenario.attach(data, "image/png", null);
-		
 		
 		cenario.log(msg);
 	}
@@ -300,16 +280,12 @@ public class CadastroPage {
 	}
 
 	public MinhaContaPage navegarParaPaginaDeMinhaConta() {
-		//esperaCarregarPaginaMinhaConta();
 		return new MinhaContaPage(driver,cenario);
 	}
 
 	public void mensagemEmailJaCadastrado() {
 		String msg = "Valido a mensagem de email ja cadastrado";
 		driver.getPageSource().contains("email address has already been registered.");
-		
-
-		
 		cenario.log(msg);
 	}
 
@@ -324,7 +300,6 @@ public class CadastroPage {
 		cenario.log(msg);
 		return driver.getPageSource().contains("errors");
 		
-
 	}
 	
 	

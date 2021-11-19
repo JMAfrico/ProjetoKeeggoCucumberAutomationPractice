@@ -1,6 +1,12 @@
 package com.automationpractice.steps;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 import com.automationpractice.pages.Browser;
 import com.automationpractice.pages.CadastroPage;
@@ -17,19 +23,28 @@ import io.cucumber.java.pt.Quando;
 
 public class CadastroStep {
 
-	// se nao funcionar é só apagar essa classe
+
 	private Browser browser;
-	private HomePage homePage;// inicio o homePage
+	private HomePage homePage;
 	private LoginPage loginPage;
 	private MinhaContaPage minhaContaPage;
 	private CadastroPage cadastroPage;
 	private Scenario cenario;
+	
+//	public void screenshot(Scenario cenario) {
+//		File file = ((TakesScreenshot)browser.getDriver()).getScreenshotAs(OutputType.FILE);
+//		try {
+//			FileUtils.copyFile(file, new File("target//screenshot//"+ cenario.getName()+ "."+ cenario.getLine()+ ".jpg"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	@Before("@cadastro")
 	public void setup(Scenario cenario) {
 		this.cenario = cenario;
-		browser = new Browser(cenario);// inicio o browser
-		homePage = browser.getHomePage();// inicio a homepage(construtor abre a página)(
+		browser = new Browser(cenario);
+		homePage = browser.getHomePage();
 		this.cenario.log("Iniciando automacao...");
 	}
 
@@ -175,8 +190,7 @@ public class CadastroStep {
 
 	@Entao("eu sou redirecionado para o menu minha conta")
 	public void souRedirecionadoParaOMenuMinhaConta() {
-		minhaContaPage = cadastroPage.navegarParaPaginaDeMinhaConta();// para cá
-		// Assert.assertFalse(cadastroPage.estouNaPaginaDeCadastro());
+		minhaContaPage = cadastroPage.navegarParaPaginaDeMinhaConta();
 		Assert.assertTrue(minhaContaPage.estouNaPaginaMinhaConta());
 
 	}
